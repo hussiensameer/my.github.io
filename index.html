@@ -3003,20 +3003,20 @@
             </div>` : "") + `<div data-id="delMd" class="optionItem" title="delete">
                 <svg width="20" height="20"><use xlink:href="#delIcon" /></svg>
             </div>
-            <div data-id="copyMd" class="optionItem" title="复制">
+            <div data-id="copyMd" class="optionItem" title="copy">
                 <svg width="20" height="20"><use xlink:href="#copyIcon" /></svg>
-            </div><div data-id="outputMD" class="optionItem" title="导出MarkDown">
+            </div><div data-id="outputMD" class="optionItem" title="Export MarkDown">
                 <svg width="20" height="20"><use xlink:href="#mdoutputIcon" /></svg>
-            </div><div data-id="saveTXT" class="optionItem" title="导出TXT">
+            </div><div data-id="saveTXT" class="optionItem" title="Export TXT">
                 <svg width="20" height="20"><use xlink:href="#savetxtIcon" /></svg>
-            </div><div data-id="savePNG" class="optionItem" title="保存当前窗口截图">
+            </div><div data-id="savePNG" class="optionItem" title="Save a screenshot of the current window">
                 <svg width="20" height="20"><use xlink:href="#savepngIcon" /></svg>
             </div></div></div>`;
             if (existVoice) {
                 mdOption.innerHTML += `<div id="pronMd" class="readyVoice">
-                <svg width="16" height="16" data-id="voiceMd" role="img"><title>朗读</title><use xlink:href="#readyVoiceIcon" /></svg>
-                <svg width="16" height="16" data-id="voiceMd" role="img"><title>暂停</title><use xlink:href="#pauseVoiceIcon" /></svg>
-                <svg width="16" height="16" data-id="voiceMd" role="img"><title>继续</title><use xlink:href="#resumeVoiceIcon" /></svg>
+                <svg width="16" height="16" data-id="voiceMd" role="img"><title>read aloud</title><use xlink:href="#readyVoiceIcon" /></svg>
+                <svg width="16" height="16" data-id="voiceMd" role="img"><title>pause</title><use xlink:href="#pauseVoiceIcon" /></svg>
+                <svg width="16" height="16" data-id="voiceMd" role="img"><title>continue</title><use xlink:href="#resumeVoiceIcon" /></svg>
                 </div>`
             }
             mdOption.onclick = mdOptionEvent;
@@ -3030,27 +3030,27 @@
             chatEle.className = "chatLi";
             chatEle.innerHTML = `<svg width="24" height="24"><use xlink:href="#chatIcon" /></svg>
                 <div class="chatName">${chat.name}</div>
-                <div class="chatOption"><svg data-type="chatEdit" style="margin-right:4px" width="24" height="24" role="img"><title>编辑</title><use xlink:href="#chatEditIcon" /></svg>
-                <svg data-type="chatDel" width="24" height="24" role="img"><title>删除</title><use xlink:href="#delIcon" /></svg></div>`
+                <div class="chatOption"><svg data-type="chatEdit" style="margin-right:4px" width="24" height="24" role="img"><title>edit</title><use xlink:href="#chatEditIcon" /></svg>
+                <svg data-type="chatDel" width="24" height="24" role="img"><title>delete</title><use xlink:href="#delIcon" /></svg></div>`
             chatListEle.appendChild(chatEle);
             chatEle.onclick = chatEleEvent;
             return chatEle;
         };
         const addNewChat = () => {
-            let chat = {name: "新的会话", data: []};
+            let chat = {name: "new session", data: []};
             chatsData.push(chat);
             updateChats();
         };
         const delChat = (idx) => {
                 Swal.fire({
-                  title: '是否删除此会话？',
-                  text: "您将无法恢复此操作！",
+                  title: 'Do you want to delete this conversation？',
+                  text: "You will not be able to undo this action！",
                   icon: 'warning',
                   showCancelButton: true,
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
-                  confirmButtonText: '确定',
-                  cancelButtonText: '取消'
+                  confirmButtonText: 'Sure',
+                  cancelButtonText: 'Cancel'
                 }).then((result) => {
                   if (result.isConfirmed) 
                   {
@@ -3072,21 +3072,21 @@
                 updateChats();
                 activeChat();
                     Swal.fire({
-                  title: '已删除',
-                  text: "此会话已被删除",
+                  title: 'deleted',
+                  text: "This conversation has been deleted",
                   icon: 'success',
                   showCancelButton: false,
                   confirmButtonColor: '#3085d6',
-                  confirmButtonText: '好的',
+                  confirmButtonText: 'OK',
                 })}
                   else{
                       Swal.fire({
-                  title: '已取消',
-                  text: "未进行任何操作",
+                  title: 'Cancelled',
+                  text: "no action",
                   icon: 'error',
                   showCancelButton: false,
                   confirmButtonColor: '#3085d6',
-                  confirmButtonText: '好的',
+                  confirmButtonText: 'OK',
                 })}
                 })
         };
@@ -3223,24 +3223,24 @@
                         }
                         updateChats();
                     } else {
-                        throw new Error("格式检查不通过")
+                        throw new Error("format check failed")
                     }
                 } catch (e) {
-                    notyf.error("导入失败，请检查文件是否正确！")
+                    notyf.error("import failed，Please check the file is correct！")
                 }
                 this.value = "";
             })
         };
         document.getElementById("clearChat").onclick = () => {
                 Swal.fire({
-                  title: '是否清空所有会话？',
-                  text: "您将无法恢复此操作！",
+                  title: 'Whether to clear all sessions？',
+                  text: "You will not be able to undo this action！",
                   icon: 'warning',
                   showCancelButton: true,
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
-                  confirmButtonText: '确定',
-                  cancelButtonText: '取消'
+                  confirmButtonText: 'Sure',
+                  cancelButtonText: 'Cancel'
                 }).then((result) => {
                   if (result.isConfirmed) {
                 chatsData.length = 0;
@@ -3252,21 +3252,21 @@
                 updateChats();
                 activeChat();
                     Swal.fire({
-                  title: '已清空',
-                  text: "所有会话已被清空",
+                  title: 'emptied',
+                  text: "All sessions have been cleared",
                   icon: 'success',
                   showCancelButton: false,
                   confirmButtonColor: '#3085d6',
-                  confirmButtonText: '好的',
+                  confirmButtonText: 'OK',
                 })}
                   else{
                       Swal.fire({
-                  title: '已取消',
-                  text: "未进行任何操作",
+                  title: 'Cancelled',
+                  text: "no action",
                   icon: 'error',
                   showCancelButton: false,
                   confirmButtonColor: '#3085d6',
-                  confirmButtonText: '好的',
+                  confirmButtonText: 'OK',
                 })}
                 })
         };
@@ -3901,7 +3901,7 @@
         const streamGen = async (long) => {
             controller = new AbortController();
             controllerId = setTimeout(() => {
-                notyf.error("请求超时，请稍后重试！");
+                notyf.error("Request timed out, please try again later!！");
                 stopLoading();
             }, 30000);
             let headers = {"Content-Type": "application/json"};
@@ -3953,15 +3953,15 @@
                 controllerId = void 0;
                 if (res.status !== 200) {
                     if (res.status === 401) {
-                        notyf.error("API key错误或失效，请检查API key！")
+                        notyf.error("The API key is wrong or invalid, please check the API key!")
                     } else if (res.status === 400) {
-                        notyf.error("请求内容过大，请删除部分对话或打开设置关闭连续对话！");
+                        notyf.error("The content of the request is too large, please delete part of the conversation or open the settings to close the continuous conversation！");
                     } else if (res.status === 404) {
-                        notyf.error("无权使用此模型，请打开设置选择其他GPT模型！");
+                        notyf.error("Not authorized to use this model，Please open the settings to choose another GPT model！");
                     } else if (res.status === 429) {
-                        notyf.error(res.statusText ? "触发API调用频率限制，请稍后重试！" : "API使用超出限额，请检查您的账单！");
+                        notyf.error(res.statusText ? "Trigger API call frequency limit，Please try again later！" : "API usage limit exceeded，please check your bill！");
                     } else {
-                        notyf.error("网关错误或超时，请稍后重试！");
+                        notyf.error("Gateway error or timeout，Please try again later！");
                     }
                     stopLoading();
                     return;
@@ -4034,7 +4034,7 @@
                 await readChunk();
             } catch (e) {
                 if (e.message.indexOf("aborted") === -1) {
-                    notyf.error("访问接口失败，请检查接口！")
+                    notyf.error("access interface failed，Please check the interface！")
                     stopLoading();
                 }
             }
@@ -4074,7 +4074,7 @@
             let requestEle = createConvEle("request");
             requestEle.children[0].textContent = message;
             data.push({role: "user", content: message});
-            if (chatsData[activeChatIdx].name === "新的会话") {
+            if (chatsData[activeChatIdx].name === "new session") {
                 if (message.length > 50) {
                     message = message.slice(0, 47) + "...";
                 }
@@ -4107,14 +4107,14 @@
         stopEle.onclick = stopLoading;
         document.getElementById("clearConv").onclick = () => {
                 Swal.fire({
-                  title: '是否清空所有对话？',
-                  text: "您将无法恢复此操作！",
+                  title: 'Whether to clear all conversations？',
+                  text: "You will not be able to undo this action！",
                   icon: 'warning',
                   showCancelButton: true,
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
-                  confirmButtonText: '确定',
-                  cancelButtonText: '取消'
+                  confirmButtonText: 'Sure',
+                  cancelButtonText: 'Cancel'
                 }).then((result) => {
                   if (!loading && result.isConfirmed) 
                   {endSpeak();
@@ -4123,21 +4123,21 @@
                     chatlog.innerHTML = "";
                     updateChats();
                     Swal.fire({
-                  title: '已清空',
-                  text: "所有对话已被清空",
+                  title: 'emptied',
+                  text: "All conversations have been cleared",
                   icon: 'success',
                   showCancelButton: false,
                   confirmButtonColor: '#3085d6',
-                  confirmButtonText: '好的',
+                  confirmButtonText: 'OK',
                 })}
                   else{
                       Swal.fire({
-                  title: '已取消',
-                  text: "未进行任何操作",
+                  title: 'Cancelled',
+                  text: "no action",
                   icon: 'error',
                   showCancelButton: false,
                   confirmButtonColor: '#3085d6',
-                  confirmButtonText: '好的',
+                  confirmButtonText: 'OK',
                 })}
                 })}
     </script>
@@ -4171,7 +4171,7 @@
                 if (!clipboardData) { return; }
             let text = window.getSelection().toString();
                 if (text) {
-                notyf.success("复制成功");
+                notyf.success("copy successfully");
             }
         });
     </script>
