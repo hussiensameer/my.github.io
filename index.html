@@ -2730,7 +2730,7 @@
             input.value = data[idx].content;
             document.body.appendChild(input);
             let date = new Date();
-            let MDfileName = "问答 - markdown - " + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "  " + date.getHours() + "." + date.getMinutes() + "." + date.getSeconds() + ".md";
+            let MDfileName = "question and answer - markdown - " + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "  " + date.getHours() + "." + date.getMinutes() + "." + date.getSeconds() + ".md";
             let textareas = document.getElementsByTagName("textarea");
             let textarea_last = textareas[textareas.length - 1];
             let textval = textarea_last.value;
@@ -2748,7 +2748,7 @@
             input.value = data[idx].content;
             document.body.appendChild(input);
             let date = new Date();
-            let TXTfileName = "问答 - txt - " + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "  " + date.getHours() + "." + date.getMinutes() + "." + date.getSeconds() + ".txt";
+            let TXTfileName = "question and answer - txt - " + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "  " + date.getHours() + "." + date.getMinutes() + "." + date.getSeconds() + ".txt";
             let textareas = document.getElementsByTagName("textarea");
             let textarea_last = textareas[textareas.length - 1];
             let textval = textarea_last.value;
@@ -2766,7 +2766,7 @@
         const saveClickPNG = () => {
             let messages = document.querySelector('.messages');
             let date = new Date();
-            let PNGfileName = "问答 - 当前截图 - " + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "  " + date.getHours() + "." + date.getMinutes() + "." + date.getSeconds() + ".png";
+            let PNGfileName = "Q&A - Current Screenshot - " + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "  " + date.getHours() + "." + date.getMinutes() + "." + date.getSeconds() + ".png";
             html2canvas(messages).then((canvas) => {
             const image = canvas.toDataURL("image/png");
             const link = document.createElement("a");
@@ -2780,19 +2780,19 @@
         
         const saveClickALLPNG = () => {
                   Swal.fire({
-                  title: '是否将所有对话截图?',
-                  text: "此操作将截取所有对话内容并下载",
+                  title: 'Do you want to screenshot all conversations??',
+                  text: "This action will capture all conversations and download",
                   icon: 'question',
                   showCancelButton: true,
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
-                  confirmButtonText: '确定',
-                  cancelButtonText: '取消'
+                  confirmButtonText: 'Sure',
+                  cancelButtonText: 'Cancel'
                 }).then((result) => {
                   if (result.isConfirmed) {
             let chatlog = document.querySelector('#chatlog');
             let date = new Date();
-            let ALLPNGfileName = "问答 - 全部截图 - " + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "  " + date.getHours() + "." + date.getMinutes() + "." + date.getSeconds() + ".png";
+            let ALLPNGfileName = "Q&A - All Screenshots - " + date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "  " + date.getHours() + "." + date.getMinutes() + "." + date.getSeconds() + ".png";
             html2canvas(chatlog).then((canvas) => {
             const image = canvas.toDataURL("image/png");
             const link = document.createElement("a");
@@ -2803,21 +2803,21 @@
             document.body.removeChild(link);
             });
                     Swal.fire({
-                  title: '已开始截取并准备下载',
+                  title: 'Capture started and ready to download',
                   icon: 'success',
                   showCancelButton: false,
                   confirmButtonColor: '#3085d6',
-                  confirmButtonText: '好的',
+                  confirmButtonText: 'OK',
                 });
-                notyf.success("已生成完整截图");}
+                notyf.success("A full screenshot has been generated");}
                   else{
                       Swal.fire({
-                  title: '已取消',
-                  text: "未进行任何操作",
+                  title: 'Cancelled',
+                  text: "no action",
                   icon: 'error',
                   showCancelButton: false,
                   confirmButtonColor: '#3085d6',
-                  confirmButtonText: '好的',
+                  confirmButtonText: 'OK',
                 })}
                 })
             };
@@ -2825,8 +2825,8 @@
         const enhanceCode = (render, options = {}) => (...args) => {
             /* args = [tokens, idx, options, env, slf] */
             const {
-                btnText = "复制代码", // button text
-                successText = "复制成功", // copy-success text
+                btnText = "copy code", // button text
+                successText = "copy successfully", // copy-success text
                 successTextDelay = 2000, // successText show time [ms]
                 showCodeLanguage = true, // false | show code language
             } = options;
@@ -2918,29 +2918,29 @@
                     idxEle.classList.add("moreOptionHidden");
                     idx = systemRole ? idx + 1 : idx;
                     outputClickMD(idx);
-                    notyf.success("导出MarkDown成功");
+                    notyf.success("Export MarkDown successfully");
                 } else if (id === "saveTXT") {
                     idxEle.classList.add("moreOptionHidden");
                     idx = systemRole ? idx + 1 : idx;
                     saveClickTXT(idx);
-                    notyf.success("导出TXT成功");
+                    notyf.success("Export TXT successfully");
                 } else if (id === "savePNG") {
                     idxEle.classList.add("moreOptionHidden");
                     idx = systemRole ? idx + 1 : idx;
                     saveClickPNG(idx);
-                    notyf.success("保存当前窗口截图成功");
+                    notyf.success("Save the screenshot of the current window successfully");
                 } else if (id === "delMd") {
                     idxEle.classList.add("moreOptionHidden");
                     if (!loading) {
                  Swal.fire({
-                  title: '是否删除此消息？',
-                  text: "您将无法恢复此操作！",
+                  title: 'Do you want to delete this message？',
+                  text: "You will not be able to undo this action！",
                   icon: 'warning',
                   showCancelButton: true,
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
-                  confirmButtonText: '确定',
-                  cancelButtonText: '取消'
+                  confirmButtonText: 'Sure',
+                  cancelButtonText: 'Cancel'
                 }).then((result) => {
                   if (result.isConfirmed) {
                             if (currentVoiceIdx) {
@@ -2952,21 +2952,21 @@
                             data.splice(idx, 1);
                             updateChats();
                     Swal.fire({
-                  title: '已删除',
-                  text: "此消息已被删除",
+                  title: 'deleted',
+                  text: "This message has been deleted",
                   icon: 'success',
                   showCancelButton: false,
                   confirmButtonColor: '#3085d6',
-                  confirmButtonText: '好的',
+                  confirmButtonText: 'OK',
                 })}
                   else{
                       Swal.fire({
-                  title: '已取消',
-                  text: "未进行任何操作",
+                  title: 'Cancelled',
+                  text: "no action",
                   icon: 'error',
                   showCancelButton: false,
                   confirmButtonColor: '#3085d6',
-                  confirmButtonText: '好的',
+                  confirmButtonText: 'OK',
                 })}
                 })
                     }
@@ -2991,16 +2991,16 @@
             ele.appendChild(mdOption);
             if (ele.className !== "request") {
                 mdOption.innerHTML = `<div class="refreshReq">
-                    <svg data-id="refreshMd" width="16" height="16" role="img"><title>刷新</title><use xlink:href="#refreshIcon" /></svg>
-                    <svg data-id="refreshMd" width="16" height="16" role="img"><title>继续</title><use xlink:href="#halfRefIcon" /></svg>
+                    <svg data-id="refreshMd" width="16" height="16" role="img"><title>to refresh</title><use xlink:href="#refreshIcon" /></svg>
+                    <svg data-id="refreshMd" width="16" height="16" role="img"><title>continue</title><use xlink:href="#halfRefIcon" /></svg>
                     </div>`
             }
             let optionWidth = existVoice >= 2 ? "196px" : "163px";
             mdOption.innerHTML += `<div class="moreOption" onmouseenter="moreOption(this)">
-            <svg class="optionTrigger" width="16" height="16" role="img"><title>选项</title><use xlink:href="#optionIcon" /></svg>
-            <div class="optionItems" style="width:${optionWidth};left:-${optionWidth}">` + (existVoice >= 2 ? `<div data-id="downAudio" class="optionItem" title="下载语音">
+            <svg class="optionTrigger" width="16" height="16" role="img"><title>options</title><use xlink:href="#optionIcon" /></svg>
+            <div class="optionItems" style="width:${optionWidth};left:-${optionWidth}">` + (existVoice >= 2 ? `<div data-id="downAudio" class="optionItem" title="download voice">
                 <svg width="20" height="20"><use xlink:href="#downAudioIcon" /></svg>
-            </div>` : "") + `<div data-id="delMd" class="optionItem" title="删除">
+            </div>` : "") + `<div data-id="delMd" class="optionItem" title="delete">
                 <svg width="20" height="20"><use xlink:href="#delIcon" /></svg>
             </div>
             <div data-id="copyMd" class="optionItem" title="复制">
